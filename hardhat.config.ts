@@ -15,6 +15,7 @@ import "solidity-coverage";
 import { HardhatUserConfig, task } from "hardhat/config";
 
 import { removeConsoleLog } from "hardhat-preprocessor";
+import { ethers } from "ethers";
 
 let accounts;
 
@@ -44,7 +45,7 @@ const config: HardhatUserConfig = {
     disambiguatePaths: false,
     runOnCompile: true,
     strict: true,
-    only: [":Greeter$"],
+    only: [":KashiExchangeRateResolver$"],
   },
   defaultNetwork: "hardhat",
   etherscan: {
@@ -109,6 +110,14 @@ const config: HardhatUserConfig = {
       saveDeployments: true,
       tags: ["staging"],
     },
+    matic: {
+      url: "https://rpc-mainnet.maticvigil.com",
+      accounts,
+      chainId: 137,
+      live: true,
+      saveDeployments: true,
+      gasPrice: 100000000000
+    }
   },
   preprocess: {
     eachLine: removeConsoleLog(
@@ -124,10 +133,6 @@ const config: HardhatUserConfig = {
         runs: 999999,
       },
     },
-  },
-  tenderly: {
-    project: String(process.env.TENDERLY_PROJECT),
-    username: String(process.env.TENDERLY_USERNAME),
   },
   typechain: {
     outDir: "types",

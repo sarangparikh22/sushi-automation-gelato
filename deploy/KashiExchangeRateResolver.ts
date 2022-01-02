@@ -4,17 +4,24 @@ import { HardhatRuntimeEnvironment } from "hardhat/types";
 const func: DeployFunction = async function ({
   getNamedAccounts,
   deployments,
+  run
 }: HardhatRuntimeEnvironment) {
   const { deploy } = deployments;
 
   const { deployer } = await getNamedAccounts();
 
-  const { address } = await deploy("Greeter", {
+  const { address } = await deploy("KashiExchangeRateResolver", {
     from: deployer,
-    args: ["Hello, world!"],
+    args: [],
   });
 
-  console.log(`Greeter deployed to ${address}`);
+  console.log(`KashiExchangeRateResolver deployed to ${address}`);
+
+  await run("verify:verify", {
+    address: address,
+    constructorArguments: [],
+  });
+
 };
 
 export default func;
