@@ -45,7 +45,7 @@ const config: HardhatUserConfig = {
     disambiguatePaths: false,
     runOnCompile: true,
     strict: true,
-    only: [":KashiExchangeRateResolver$"],
+    // only: [":KashiExchangeRateResolver$", ":KashiExchangeRateUpdater$"],
   },
   defaultNetwork: "hardhat",
   etherscan: {
