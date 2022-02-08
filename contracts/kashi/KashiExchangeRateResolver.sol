@@ -2,7 +2,7 @@
 
 pragma solidity 0.8.11;
 
-import "./interfaces/kashi/IResolver.sol";
+import "../interfaces/kashi/IResolver.sol";
 
 contract KashiExchangeRateResolver is IResolver {
 
