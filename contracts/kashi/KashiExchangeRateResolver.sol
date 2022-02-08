@@ -5,7 +5,6 @@ pragma solidity 0.8.11;
 import "../interfaces/kashi/IResolver.sol";
 
 contract KashiExchangeRateResolver is IResolver {
-
     function checker(IKashiPair kashiPair)
         external
         view
@@ -17,11 +16,15 @@ contract KashiExchangeRateResolver is IResolver {
         uint256 lastExchangeRate = kashiPair.exchangeRate();
         (bool updated, uint256 rate) = oracle.peek(oracleData);
         if (updated) {
-            if(rate != lastExchangeRate) {
+            uint256 deviation = ((
+                lastExchangeRate > rate
+                    ? lastExchangeRate - rate
+                    : rate - lastExchangeRate
+            ) * 100) / lastExchangeRate;
+            if (deviation > 20) {
                 canExec = true;
                 execPayload = abi.encodeWithSignature("updateExchangeRate()");
             }
         }
     }
-
 }
