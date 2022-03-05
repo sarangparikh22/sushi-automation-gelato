@@ -116,8 +116,22 @@ const config: HardhatUserConfig = {
       chainId: 137,
       live: true,
       saveDeployments: true,
-      gasPrice: 100000000000
-    }
+      gasPrice: 100000000000,
+    },
+    arbitrum: {
+      url: "https://rpc.ankr.com/arbitrum",
+      accounts,
+      chainId: 42161,
+      live: true,
+      saveDeployments: true
+    },
+    avalanche: {
+      url: "https://rpc.ankr.com/avalanche",
+      accounts,
+      chainId: 43114,
+      live: true,
+      saveDeployments: true
+    },
   },
   preprocess: {
     eachLine: removeConsoleLog(

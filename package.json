@@ -23,6 +23,8 @@
     "kovan:verify": "hardhat --network kovan etherscan-verify --license MIT",
     "matic:deploy": "hardhat --network matic deploy",
     "matic:verify": "hardhat --network matic etherscan-verify --license MIT",
+    "arbitrum:deploy": "hardhat --network arbitrum deploy",
+    "avalanche:deploy": "hardhat --network avalanche deploy",
     "size-contracts": "hardhat size-contracts",
     "test": "cross-env TS_NODE_TRANSPILE_ONLY=1 hardhat test",
     "test:coverage": "cross-env NODE_OPTIONS=\"--max-old-space-size=4096\" hardhat coverage",
